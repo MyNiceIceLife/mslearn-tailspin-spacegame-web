@@ -1,0 +1,30 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 80ef5ab..0a6e2dc 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -29,3 +29,5 @@[m [mPrivacy information can be found at https://privacy.microsoft.com/en-us/[m
+ [m
+ Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents,[m
+ or trademarks, whether by implication, estoppel or otherwise.[m
+[32m+[m[41m[m
+[32m+[m[32m# Test[m
+\ No newline at end of file[m
+[1mdiff --git a/azure-pipelines.yml b/azure-pipelines.yml[m
+[1mindex 7bfd443..73963d9 100644[m
+[1m--- a/azure-pipelines.yml[m
+[1m+++ b/azure-pipelines.yml[m
+[36m@@ -44,6 +44,14 @@[m [msteps:[m
+     command: 'build'[m
+     arguments: '--no-restore --configuration $(buildConfiguration)'[m
+     projects: '**/*.csproj'[m
+[32m+[m[41m    [m
+[32m+[m[32m- task: DotNetCoreCLI@2[m
+[32m+[m[32m  displayName: 'Run unit tests - $(buildConfiguration)'[m
+[32m+[m[32m  inputs:[m
+[32m+[m[32m    command: 'test'[m
+[32m+[m[32m    arguments: '--no-build --configuration $(buildConfiguration)'[m
+[32m+[m[32m    publishTestResults: true[m
+[32m+[m[32m    projects: '**/*.Tests.csproj'[m
+ [m
+ - task: DotNetCoreCLI@2[m
+   displayName: 'Publish the project - $(buildConfiguration)'[m
